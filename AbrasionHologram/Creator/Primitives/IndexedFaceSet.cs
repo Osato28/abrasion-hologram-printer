@@ -50,7 +50,7 @@ namespace Primitives
             {
                 string[] vals = coords[i].TrimStart().Split(' ');
                 //values are stored in y,z,x order
-                Coord c = new Coord(-double.Parse(vals[1]) * scale, double.Parse(vals[2]) * scale, -double.Parse(vals[0]) * scale);
+                Coord c = new Coord(-DecimalParser.ParseToDouble(vals[1]) * scale, DecimalParser.ParseToDouble(vals[2]) * scale, -DecimalParser.ParseToDouble(vals[0]) * scale);
                 AvailableVertexLocations.Add(c);
                 AvailableViewVertexLocations_ZeroAngle.Add(c);
                 Vertices.Add(new Vertex(this, i));

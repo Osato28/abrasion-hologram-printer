@@ -41,10 +41,10 @@ namespace Utility
             : this()
         {
             string[] vals = command.Split(' ');
-            Center = new PointD(double.Parse(vals[2]), double.Parse(vals[3]));
-            Radius = double.Parse(vals[4]);
-            StartAngle = double.Parse(vals[5]);
-            EndAngle = double.Parse(vals[6]);
+            Center = new PointD(DecimalParser.ParseToDouble(vals[2]), DecimalParser.ParseToDouble(vals[3]));
+            Radius = DecimalParser.ParseToDouble(vals[4]);
+            StartAngle = DecimalParser.ParseToDouble(vals[5]);
+            EndAngle = DecimalParser.ParseToDouble(vals[6]);
         }
 
         /// <summary>
