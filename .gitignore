@@ -1,0 +1,4 @@
+*-Debug.json
+mono_crash*
+**/.vs
+*.cache*
