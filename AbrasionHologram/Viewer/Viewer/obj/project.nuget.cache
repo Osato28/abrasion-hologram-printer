@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "iACDrNnBt90=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Xm\\Documents\\GitHub\\abrasion-hologram-printer\\AbrasionHologram\\Viewer\\Viewer\\Viewer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Xm\\.nuget\\packages\\microsoft.win32.systemevents\\9.0.0\\microsoft.win32.systemevents.9.0.0.nupkg.sha512",
+    "C:\\Users\\Xm\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512",
+    "C:\\Users\\Xm\\.nuget\\packages\\system.drawing.common\\9.0.0\\system.drawing.common.9.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

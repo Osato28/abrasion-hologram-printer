@@ -1,0 +1,11 @@
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\bin\Debug\net8.0-windows\DrawableObjects.deps.json
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\bin\Debug\net8.0-windows\DrawableObjects.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\bin\Debug\net8.0-windows\DrawableObjects.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\net8.0-windows\DrawableObjects.csproj.AssemblyReference.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\net8.0-windows\DrawableObjects.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\net8.0-windows\DrawableObjects.csproj.CoreCompileInputs.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\net8.0-windows\DrawableObjects.sourcelink.json
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\net8.0-windows\DrawableObjects.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\net8.0-windows\refint\DrawableObjects.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\net8.0-windows\DrawableObjects.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\net8.0-windows\ref\DrawableObjects.dll

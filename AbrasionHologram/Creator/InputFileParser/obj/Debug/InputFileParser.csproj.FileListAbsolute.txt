@@ -24,3 +24,18 @@ C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\Creator\InputF
 C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\Creator\InputFileParser\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\Creator\InputFileParser\obj\Debug\InputFileParser.dll
 C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\Creator\InputFileParser\obj\Debug\InputFileParser.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\bin\Debug\InputFileParser.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\bin\Debug\InputFileParser.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\bin\Debug\Primitives.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\bin\Debug\Utility.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\bin\Debug\DrawableObjects.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\bin\Debug\CreatorSupport.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\bin\Debug\Utility.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\bin\Debug\Primitives.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\bin\Debug\DrawableObjects.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\bin\Debug\CreatorSupport.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\obj\Debug\InputFileParser.csproj.AssemblyReference.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\obj\Debug\InputFileParser.csproj.CoreCompileInputs.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\obj\Debug\InputFil.F61AA477.Up2Date
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\obj\Debug\InputFileParser.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\InputFileParser\obj\Debug\InputFileParser.pdb

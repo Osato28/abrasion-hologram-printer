@@ -24,3 +24,18 @@ C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\Shared\Utility
 C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.csproj.GenerateResource.Cache
 C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.dll
 C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\bin\Debug\Utility.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\bin\Debug\Utility.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\bin\Debug\DrawableObjects.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\bin\Debug\DrawableObjects.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.csproj.AssemblyReference.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.ArcViewContainer.resources
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.BufferedControl.resources
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.ImageViewer.resources
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.Progress.resources
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.ProportionalControl.resources
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.csproj.GenerateResource.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.csproj.Up2Date
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\Utility.pdb
