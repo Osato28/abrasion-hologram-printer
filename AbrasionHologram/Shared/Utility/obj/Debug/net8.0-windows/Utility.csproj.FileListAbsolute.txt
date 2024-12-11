@@ -18,3 +18,4 @@ C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\U
 C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\net8.0-windows\refint\Utility.dll
 C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\net8.0-windows\Utility.pdb
 C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\net8.0-windows\ref\Utility.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Shared\Utility\obj\Debug\net8.0-windows\Utility.ArcView.resources

@@ -36,3 +36,5 @@ C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\
 C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Creator\bin\Debug\net8.0-windows\Viewer.deps.json
 C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Creator\bin\Debug\net8.0-windows\Viewer.runtimeconfig.json
 C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Creator\bin\Debug\net8.0-windows\Viewer.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Creator\obj\Debug\net8.0-windows\Creator.CreatorCanvas.resources
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Creator\bin\Debug\net8.0-windows\STLdotNET.dll

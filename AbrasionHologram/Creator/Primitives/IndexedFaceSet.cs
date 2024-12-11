@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Utility;
 using CreatorSupport;
+using QuantumConcepts.Formats.StereoLithography;
+using System.Xml.Linq;
 
 namespace Primitives
 {
@@ -26,6 +28,102 @@ namespace Primitives
 
         /// <summary>Gets the name of this IndexedFaceSet</summary>
         public string Name { get; private set; }
+
+        /// <summary>Turns a QuantumConcepts STL coordinate set into a local Coord object.</summary>
+        private Coord PointToCoord(QuantumConcepts.Formats.StereoLithography.Vertex point)
+        {
+            Coord coord = new Coord(-point.Y, point.Z, -point.X);
+            return coord;
+        }
+
+        public IndexedFaceSet(IList<Facet> facets)
+        {
+            Name = "test";
+            AvailableVertexLocations = new List<Coord>();
+            AvailableViewVertexLocations_ZeroAngle = new List<Coord>();
+            Vertices = new List<Vertex>();
+            Edges = new List<Edge>();
+            IndexedFaces = new List<IndexedFace>(facets.Count - 1);
+
+            edgeID = 0;
+            foreach (Facet facet in facets) 
+            {
+                foreach (QuantumConcepts.Formats.StereoLithography.Vertex point in facet.Vertices)
+                {
+                    // turn coordinates into a Coord
+                    Coord c = PointToCoord(point);
+
+                    Vertex v = GetExistingVertex(c);
+                    if (v == null)
+                    {
+                        // Add Coord to AvailableVertexLocations and AvailableViewVertexLocations_ZeroAngle if it is not yet in them
+                        AvailableVertexLocations.Add(c);
+                        AvailableViewVertexLocations_ZeroAngle.Add(c);
+                        // If no vertices with those coordinates have been found, add vertex which is a child of this and has the same index as the coordinate
+                        v = new Vertex(this, coordID);
+                        Vertices.Add(v);
+                        coordID++;
+                    }
+                }
+                // create an IndexedFace from facet
+                IndexedFace indexedFace = new IndexedFace(this);
+                // add vertices and edges to IndexedFace
+                Coord firstCoord = PointToCoord(facet.Vertices[0]);
+                Vertex firstVertex = GetExistingVertex(firstCoord);
+                indexedFace.Vertices.Add(firstVertex);
+                firstVertex.IndexedFaces.Add(indexedFace);
+                Vertex previousVertex = firstVertex;
+                for (int vertexIndex = 1; vertexIndex < facet.Vertices.Count; vertexIndex++) //ignore the last value (seems to always be -1, not a vertex), so end at Length - 2
+                {
+                    Coord currentCoord = PointToCoord(facet.Vertices[vertexIndex]);
+                    Vertex currentVertex = GetExistingVertex(currentCoord);
+                    if (!indexedFace.Vertices.Contains(currentVertex)) //sometimes triangles are represented as squares, using a duplicate Vertex. We want them to actually be triangles.
+                    {
+                        Edge e = GetNewOrExistingEdge(previousVertex, currentVertex, indexedFace);
+                        if (e.CreatorFace != indexedFace && e.OtherFace == null) //if this edge was an existing edge, we need to update it so it knows that it's now a part of a new IndexedFace
+                            e.AddFace(indexedFace);
+
+                        indexedFace.Edges.Add(e);
+
+                        //make sure the Vertices know that they are now part of the new edge, if they don't already know.
+                        if (!previousVertex.Edges.Contains(e))
+                            previousVertex.Edges.Add(e);
+                        if (!currentVertex.Edges.Contains(e))
+                            currentVertex.Edges.Add(e);
+
+                        indexedFace.Vertices.Add(currentVertex);
+                        currentVertex.IndexedFaces.Add(indexedFace);
+                        previousVertex = currentVertex;
+                    }
+                }
+                //add the Edge that finishes this IndexedFace
+                Edge finalEdge = GetNewOrExistingEdge(previousVertex, firstVertex, indexedFace);
+                if (finalEdge.CreatorFace != indexedFace) //if this edge was an existing edge, we need to update it so it knows that it's now a part of a new IndexedFace
+                    finalEdge.AddFace(indexedFace);
+
+                indexedFace.Edges.Add(finalEdge);
+
+                //update the first and last Vertex to so that they know about the Edge that was just added
+                if (!indexedFace.Vertices[0].Edges.Contains(finalEdge))
+                    indexedFace.Vertices[0].Edges.Add(finalEdge);
+                if (!indexedFace.Vertices[indexedFace.Vertices.Count - 1].Edges.Contains(finalEdge))
+                    indexedFace.Vertices[indexedFace.Vertices.Count - 1].Edges.Add(finalEdge);
+
+                indexedFace.IsTransparent = false;
+
+                //we're now ready to set the Normal Vectors for the IndexedFace
+                indexedFace.UpdateNormalVector();
+                indexedFace.UpdateNormalVector_ModelingCoordinates();
+
+                //now that the IndexedFace knows its NormalVector, we need to update all the Edges so they know their ConnectionType
+                foreach (Edge e in indexedFace.Edges)
+                {
+                    e.UpdateConnectionType();
+                }
+
+                IndexedFaces.Add(indexedFace);
+            }
+        }
 
         /// <summary>
         /// Creates a new IndexedFaceSet
@@ -106,7 +204,7 @@ namespace Primitives
                 if (!indexedFace.Vertices[indexedFace.Vertices.Count - 1].Edges.Contains(finalEdge))
                     indexedFace.Vertices[indexedFace.Vertices.Count - 1].Edges.Add(finalEdge);
 
-                indexedFace.IsTransparent = (int.Parse(vals[vals.Length-1]) == 0);
+                indexedFace.IsTransparent = (int.Parse(vals[vals.Length - 1]) == 0);
 
                 //we're now ready to set the Normal Vectors for the IndexedFace
                 indexedFace.UpdateNormalVector();
@@ -123,12 +221,13 @@ namespace Primitives
         }
 
         static int edgeID = 0;
+        static int coordID = 0;
 
         /// <summary>Creates and returns a new or returns an existing Edge with the specified Vertices. If a new Edge is created, its CreatorIndexedFace will be set to the passed in IndexedFace.</summary>
         private Edge GetNewOrExistingEdge(Vertex v1, Vertex v2, IndexedFace creatorIndexedFace)
         {
             Edge newEdge = new Edge(v1, v2, creatorIndexedFace);
-            foreach(Edge e in Edges)
+            foreach (Edge e in Edges)
             {
                 if (e.ContainsSameVerticesAs(newEdge))
                     return e;
@@ -159,7 +258,7 @@ namespace Primitives
                 Coord viewCoord = Transformer.ModelToWindow(c);
                 AvailableViewVertexLocations_ZeroAngle.Add(viewCoord);
             }
-            
+
             //update whether faces are front or back facing because a face may have moved to the other side of the object
             foreach (IndexedFace ifc in IndexedFaces)
             {

@@ -11,7 +11,7 @@ namespace InputFileParser
     /// <summary>
     /// Represents an X3D file to be displayed and converted into an ArcFile
     /// </summary>
-    public class X3DFile
+    public class X3DFile : IFileDecoder
     {
         /// <summary>
         /// Gets or sets the name of the file
