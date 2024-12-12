@@ -20,3 +20,16 @@ C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\Creator\Primit
 C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\Creator\Primitives\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\Creator\Primitives\obj\Debug\Primitives.dll
 C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\Creator\Primitives\obj\Debug\Primitives.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Primitives\bin\Debug\Primitives.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Primitives\bin\Debug\Primitives.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Primitives\bin\Debug\CreatorSupport.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Primitives\bin\Debug\Utility.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Primitives\bin\Debug\DrawableObjects.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Primitives\bin\Debug\Utility.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Primitives\bin\Debug\CreatorSupport.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Primitives\bin\Debug\DrawableObjects.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Primitives\obj\Debug\Primitives.csproj.AssemblyReference.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Primitives\obj\Debug\Primitives.csproj.CoreCompileInputs.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Primitives\obj\Debug\Primitives.csproj.Up2Date
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Primitives\obj\Debug\Primitives.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\Primitives\obj\Debug\Primitives.pdb

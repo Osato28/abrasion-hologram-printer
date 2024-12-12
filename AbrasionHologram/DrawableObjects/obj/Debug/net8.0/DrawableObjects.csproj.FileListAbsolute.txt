@@ -1,0 +1,3 @@
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\net8.0\DrawableObjects.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\net8.0\DrawableObjects.csproj.CoreCompileInputs.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\net8.0\DrawableObjects.sourcelink.json

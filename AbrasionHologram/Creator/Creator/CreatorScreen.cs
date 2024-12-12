@@ -25,7 +25,7 @@ namespace Creator
         protected MruStripMenuInline mruMenu;
         const string mruRegKey = @"SOFTWARE\HologramPrinter\CreatorMRU";
 
-        private X3DFile mCurrentFile = null;
+        private IFileDecoder mCurrentFile = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CreatorScreen"/> class.
@@ -74,9 +74,18 @@ namespace Creator
         /// <param name="fileName">Name of the file.</param>
         private void OpenFile(string fileName)
         {
-            mCurrentFile = new X3DFile(fileName);
-            mCurrentFile.Parse();
-            mView.ShapeList = mCurrentFile.ShapeList;
+            string extension = Path.GetExtension(fileName).ToLower();
+            if (extension == ".x3d")
+            {
+                mCurrentFile = new X3DFile(fileName);
+                mCurrentFile.Parse();
+                mView.ShapeList = mCurrentFile.ShapeList;
+            } else if (extension == ".stl")
+            {
+                mCurrentFile = new STLFile(fileName);
+                mCurrentFile.Parse();
+                mView.ShapeList = mCurrentFile.ShapeList;
+            }
         }
 
         /// <summary>
@@ -88,7 +97,7 @@ namespace Creator
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Multiselect = false;
-            ofd.Filter = "X3D Files (*.x3d)|*.x3d";
+            ofd.Filter = "Accepted Files (*.x3d;*.stl)|*.x3d;*.stl|All files(*.*)|*.*";
             if (ofd.ShowDialog(this) == DialogResult.OK)
             {
                 OpenFile(ofd.FileName);
@@ -118,14 +127,14 @@ namespace Creator
             FileInfo file = new FileInfo(filename);
             if (file.Exists)
             {
-                if (file.Extension.ToLower().Equals(".x3d"))
+                if (file.Extension.ToLower().Equals(".x3d") || file.Extension.ToLower().Equals(".stl"))
                 {
                     OpenFile(filename);
                     mruMenu.SetFirstFile(number);
                 }
                 else
                 {
-                    MessageBox.Show("The file '" + filename + "' is not an x3d file and will be removed from the Recent Files(s) list."
+                    MessageBox.Show("The file '" + filename + "' is not an accepted file and will be removed from the Recent Files(s) list."
                     , "Error opening file"
                     , MessageBoxButtons.OK
                     , MessageBoxIcon.Error);

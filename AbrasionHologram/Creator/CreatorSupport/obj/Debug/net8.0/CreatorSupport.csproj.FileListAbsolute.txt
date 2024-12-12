@@ -1,0 +1,16 @@
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\bin\Debug\net8.0\CreatorSupport.deps.json
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\bin\Debug\net8.0\CreatorSupport.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\bin\Debug\net8.0\CreatorSupport.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\bin\Debug\net8.0\DrawableObjects.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\bin\Debug\net8.0\Utility.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\bin\Debug\net8.0\Utility.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\bin\Debug\net8.0\DrawableObjects.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\obj\Debug\net8.0\CreatorSupport.csproj.AssemblyReference.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\obj\Debug\net8.0\CreatorSupport.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\obj\Debug\net8.0\CreatorSupport.csproj.CoreCompileInputs.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\obj\Debug\net8.0\CreatorSupport.sourcelink.json
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\obj\Debug\net8.0\CreatorS.641BBA05.Up2Date
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\obj\Debug\net8.0\CreatorSupport.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\obj\Debug\net8.0\refint\CreatorSupport.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\obj\Debug\net8.0\CreatorSupport.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\Creator\CreatorSupport\obj\Debug\net8.0\ref\CreatorSupport.dll

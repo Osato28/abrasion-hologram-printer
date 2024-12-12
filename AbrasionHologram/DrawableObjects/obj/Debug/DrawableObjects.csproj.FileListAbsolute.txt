@@ -8,3 +8,9 @@ C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\DrawableObject
 C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\DrawableObjects\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\DrawableObjects\obj\Debug\DrawableObjects.dll
 C:\Users\Mike\Projects\Abrasion Hologram Printer\AbrasionHologram\DrawableObjects\obj\Debug\DrawableObjects.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\bin\Debug\DrawableObjects.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\bin\Debug\DrawableObjects.pdb
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\DrawableObjects.csproj.AssemblyReference.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\DrawableObjects.csproj.CoreCompileInputs.cache
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\DrawableObjects.dll
+C:\Users\Xm\Documents\GitHub\abrasion-hologram-printer\AbrasionHologram\DrawableObjects\obj\Debug\DrawableObjects.pdb
