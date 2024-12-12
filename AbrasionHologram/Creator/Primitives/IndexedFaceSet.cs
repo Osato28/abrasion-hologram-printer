@@ -45,6 +45,7 @@ namespace Primitives
             Edges = new List<Edge>();
             IndexedFaces = new List<IndexedFace>(facets.Count - 1);
 
+            coordID = 0;
             edgeID = 0;
             foreach (Facet facet in facets) 
             {
