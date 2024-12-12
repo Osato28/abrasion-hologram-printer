@@ -77,12 +77,12 @@ namespace Creator
             string extension = Path.GetExtension(fileName).ToLower();
             if (extension == ".x3d")
             {
-                X3DFile mCurrentFile = new X3DFile(fileName);
+                mCurrentFile = new X3DFile(fileName);
                 mCurrentFile.Parse();
                 mView.ShapeList = mCurrentFile.ShapeList;
             } else if (extension == ".stl")
             {
-                STLFile mCurrentFile = new STLFile(fileName);
+                mCurrentFile = new STLFile(fileName);
                 mCurrentFile.Parse();
                 mView.ShapeList = mCurrentFile.ShapeList;
             }

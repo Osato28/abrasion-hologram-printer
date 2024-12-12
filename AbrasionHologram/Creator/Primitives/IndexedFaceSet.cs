@@ -47,74 +47,25 @@ namespace Primitives
 
             coordID = 0;
             edgeID = 0;
-            foreach (Facet facet in facets) 
+            foreach (Facet facet in facets)
             {
-                foreach (QuantumConcepts.Formats.StereoLithography.Vertex point in facet.Vertices)
-                {
-                    // turn coordinates into a Coord
-                    Coord c = PointToCoord(point);
+                // Logic for generating vertices and edges has been moved to separate methods to separate methods to facilitate removal of old structs from memory
+                GenerateVerticesFromFacet(facet);
 
-                    Vertex v = GetExistingVertex(c);
-                    if (v == null)
-                    {
-                        // Add Coord to AvailableVertexLocations and AvailableViewVertexLocations_ZeroAngle if it is not yet in them
-                        AvailableVertexLocations.Add(c);
-                        AvailableViewVertexLocations_ZeroAngle.Add(c);
-                        // If no vertices with those coordinates have been found, add vertex which is a child of this and has the same index as the coordinate
-                        v = new Vertex(this, coordID);
-                        Vertices.Add(v);
-                        coordID++;
-                    }
-                }
                 // create an IndexedFace from facet
                 IndexedFace indexedFace = new IndexedFace(this);
-                // add vertices and edges to IndexedFace
-                Coord firstCoord = PointToCoord(facet.Vertices[0]);
-                Vertex firstVertex = GetExistingVertex(firstCoord);
-                indexedFace.Vertices.Add(firstVertex);
-                firstVertex.IndexedFaces.Add(indexedFace);
-                Vertex previousVertex = firstVertex;
-                for (int vertexIndex = 1; vertexIndex < facet.Vertices.Count; vertexIndex++) //ignore the last value (seems to always be -1, not a vertex), so end at Length - 2
-                {
-                    Coord currentCoord = PointToCoord(facet.Vertices[vertexIndex]);
-                    Vertex currentVertex = GetExistingVertex(currentCoord);
-                    if (!indexedFace.Vertices.Contains(currentVertex)) //sometimes triangles are represented as squares, using a duplicate Vertex. We want them to actually be triangles.
-                    {
-                        Edge e = GetNewOrExistingEdge(previousVertex, currentVertex, indexedFace);
-                        if (e.CreatorFace != indexedFace && e.OtherFace == null) //if this edge was an existing edge, we need to update it so it knows that it's now a part of a new IndexedFace
-                            e.AddFace(indexedFace);
 
-                        indexedFace.Edges.Add(e);
-
-                        //make sure the Vertices know that they are now part of the new edge, if they don't already know.
-                        if (!previousVertex.Edges.Contains(e))
-                            previousVertex.Edges.Add(e);
-                        if (!currentVertex.Edges.Contains(e))
-                            currentVertex.Edges.Add(e);
-
-                        indexedFace.Vertices.Add(currentVertex);
-                        currentVertex.IndexedFaces.Add(indexedFace);
-                        previousVertex = currentVertex;
-                    }
-                }
-                //add the Edge that finishes this IndexedFace
-                Edge finalEdge = GetNewOrExistingEdge(previousVertex, firstVertex, indexedFace);
-                if (finalEdge.CreatorFace != indexedFace) //if this edge was an existing edge, we need to update it so it knows that it's now a part of a new IndexedFace
-                    finalEdge.AddFace(indexedFace);
-
-                indexedFace.Edges.Add(finalEdge);
-
-                //update the first and last Vertex to so that they know about the Edge that was just added
-                if (!indexedFace.Vertices[0].Edges.Contains(finalEdge))
-                    indexedFace.Vertices[0].Edges.Add(finalEdge);
-                if (!indexedFace.Vertices[indexedFace.Vertices.Count - 1].Edges.Contains(finalEdge))
-                    indexedFace.Vertices[indexedFace.Vertices.Count - 1].Edges.Add(finalEdge);
+                GenerateEdgesFromFacet(facet, indexedFace);
 
                 indexedFace.IsTransparent = false;
 
                 //we're now ready to set the Normal Vectors for the IndexedFace
                 indexedFace.UpdateNormalVector();
                 indexedFace.UpdateNormalVector_ModelingCoordinates();
+                if (!indexedFace.NormalVector.IsValid())
+                {
+                    throw new NotFiniteNumberException("The normal vector created at this point is at least partly not a number.");
+                }
 
                 //now that the IndexedFace knows its NormalVector, we need to update all the Edges so they know their ConnectionType
                 foreach (Edge e in indexedFace.Edges)
@@ -124,6 +75,72 @@ namespace Primitives
 
                 IndexedFaces.Add(indexedFace);
             }
+        }
+
+        private void GenerateVerticesFromFacet(Facet facet)
+        {
+            foreach (QuantumConcepts.Formats.StereoLithography.Vertex point in facet.Vertices)
+            {
+                // turn coordinates into a Coord
+                Coord c = PointToCoord(point);
+
+                Vertex v = GetExistingVertex(c);
+                if (v == null)
+                {
+                    // Add Coord to AvailableVertexLocations and AvailableViewVertexLocations_ZeroAngle if it is not yet in them
+                    AvailableVertexLocations.Add(c);
+                    AvailableViewVertexLocations_ZeroAngle.Add(c);
+                    // If no vertices with those coordinates have been found, add vertex which is a child of this and has the same index as the coordinate
+                    v = new Vertex(this, coordID);
+                    Vertices.Add(v);
+                    coordID++;
+                }
+            }
+        }
+
+        private void GenerateEdgesFromFacet(Facet facet, IndexedFace indexedFace)
+        {
+            // add vertices and edges to IndexedFace
+            Coord firstCoord = PointToCoord(facet.Vertices[0]);
+            Vertex firstVertex = GetExistingVertex(firstCoord);
+            indexedFace.Vertices.Add(firstVertex);
+            firstVertex.IndexedFaces.Add(indexedFace);
+            Vertex previousVertex = firstVertex;
+            for (int vertexIndex = 1; vertexIndex < facet.Vertices.Count; vertexIndex++) //ignore the last value (seems to always be -1, not a vertex), so end at Length - 2
+            {
+                Coord currentCoord = PointToCoord(facet.Vertices[vertexIndex]);
+                Vertex currentVertex = GetExistingVertex(currentCoord);
+                if (!indexedFace.Vertices.Contains(currentVertex)) //sometimes triangles are represented as squares, using a duplicate Vertex. We want them to actually be triangles.
+                {
+                    Edge e = GetNewOrExistingEdge(previousVertex, currentVertex, indexedFace);
+                    if (e.CreatorFace != indexedFace && e.OtherFace == null) //if this edge was an existing edge, we need to update it so it knows that it's now a part of a new IndexedFace
+                        e.AddFace(indexedFace);
+
+                    indexedFace.Edges.Add(e);
+
+                    //make sure the Vertices know that they are now part of the new edge, if they don't already know.
+                    if (!previousVertex.Edges.Contains(e))
+                        previousVertex.Edges.Add(e);
+                    if (!currentVertex.Edges.Contains(e))
+                        currentVertex.Edges.Add(e);
+
+                    indexedFace.Vertices.Add(currentVertex);
+                    currentVertex.IndexedFaces.Add(indexedFace);
+                    previousVertex = currentVertex;
+                }
+            }
+            //add the Edge that finishes this IndexedFace
+            Edge finalEdge = GetNewOrExistingEdge(previousVertex, firstVertex, indexedFace);
+            if (finalEdge.CreatorFace != indexedFace) //if this edge was an existing edge, we need to update it so it knows that it's now a part of a new IndexedFace
+                finalEdge.AddFace(indexedFace);
+
+            indexedFace.Edges.Add(finalEdge);
+
+            //update the first and last Vertex to so that they know about the Edge that was just added
+            if (!indexedFace.Vertices[0].Edges.Contains(finalEdge))
+                indexedFace.Vertices[0].Edges.Add(finalEdge);
+            if (!indexedFace.Vertices[indexedFace.Vertices.Count - 1].Edges.Contains(finalEdge))
+                indexedFace.Vertices[indexedFace.Vertices.Count - 1].Edges.Add(finalEdge);
         }
 
         /// <summary>
@@ -145,15 +162,7 @@ namespace Primitives
 
             //find all the points
             string[] coords = points.TrimEnd().Split(',');
-            for (int i = 0; i < coords.Length - 1; i++)
-            {
-                string[] vals = coords[i].TrimStart().Split(' ');
-                //values are stored in y,z,x order
-                Coord c = new Coord(-double.Parse(vals[1]) * scale, double.Parse(vals[2]) * scale, -double.Parse(vals[0]) * scale);
-                AvailableVertexLocations.Add(c);
-                AvailableViewVertexLocations_ZeroAngle.Add(c);
-                Vertices.Add(new Vertex(this, i));
-            }
+            GenerateVerticesFromIF(scale, coords);
 
             //create all the indexed faces by creating Edges and connecting them
             string[] indices = coordIndices.Split(',');
@@ -165,45 +174,7 @@ namespace Primitives
                     throw new Exception("Can not create an IndexedFace from less than 3 Vertices");
 
                 IndexedFace indexedFace = new IndexedFace(this);
-                Vertex firstVertex = GetExistingVertex(Vertices[int.Parse(vals[0])].ModelingCoord);
-                indexedFace.Vertices.Add(firstVertex);
-                firstVertex.IndexedFaces.Add(indexedFace);
-                Vertex previousVertex = firstVertex;
-                for (int vertexIndex = 1; vertexIndex < vals.Length - 1; vertexIndex++) //ignore the last value (seems to always be -1, not a vertex), so end at Length - 2
-                {
-
-                    Vertex currentVertex = GetExistingVertex(Vertices[int.Parse(vals[vertexIndex])].ModelingCoord);
-                    if (!indexedFace.Vertices.Contains(currentVertex)) //sometimes triangles are represented as squares, using a duplicate Vertex. We want them to actually be triangles.
-                    {
-                        Edge e = GetNewOrExistingEdge(previousVertex, currentVertex, indexedFace);
-                        if (e.CreatorFace != indexedFace && e.OtherFace == null) //if this edge was an existing edge, we need to update it so it knows that it's now a part of a new IndexedFace
-                            e.AddFace(indexedFace);
-
-                        indexedFace.Edges.Add(e);
-
-                        //make sure the Vertices know that they are now part of the new edge, if they don't already know.
-                        if (!previousVertex.Edges.Contains(e))
-                            previousVertex.Edges.Add(e);
-                        if (!currentVertex.Edges.Contains(e))
-                            currentVertex.Edges.Add(e);
-
-                        indexedFace.Vertices.Add(currentVertex);
-                        currentVertex.IndexedFaces.Add(indexedFace);
-                        previousVertex = currentVertex;
-                    }
-                }
-                //add the Edge that finishes this IndexedFace
-                Edge finalEdge = GetNewOrExistingEdge(previousVertex, firstVertex, indexedFace);
-                if (finalEdge.CreatorFace != indexedFace) //if this edge was an existing edge, we need to update it so it knows that it's now a part of a new IndexedFace
-                    finalEdge.AddFace(indexedFace);
-
-                indexedFace.Edges.Add(finalEdge);
-
-                //update the first and last Vertex to so that they know about the Edge that was just added
-                if (!indexedFace.Vertices[0].Edges.Contains(finalEdge))
-                    indexedFace.Vertices[0].Edges.Add(finalEdge);
-                if (!indexedFace.Vertices[indexedFace.Vertices.Count - 1].Edges.Contains(finalEdge))
-                    indexedFace.Vertices[indexedFace.Vertices.Count - 1].Edges.Add(finalEdge);
+                GenerateEdgesFromIF(vals, indexedFace);
 
                 indexedFace.IsTransparent = (int.Parse(vals[vals.Length - 1]) == 0);
 
@@ -218,7 +189,66 @@ namespace Primitives
                 }
 
                 IndexedFaces.Add(indexedFace);
+
+                // Trigger garbage collector manually because all the Coords that have been used end up as 1-2 MB of dead objects
+                //System.GC.Collect();
             }
+        }
+
+        private void GenerateVerticesFromIF(double scale, string[] coords)
+        {
+            for (int i = 0; i < coords.Length - 1; i++)
+            {
+                string[] vals = coords[i].TrimStart().Split(' ');
+                //values are stored in y,z,x order
+                Coord c = new Coord(-double.Parse(vals[1]) * scale, double.Parse(vals[2]) * scale, -double.Parse(vals[0]) * scale);
+                AvailableVertexLocations.Add(c);
+                AvailableViewVertexLocations_ZeroAngle.Add(c);
+                Vertices.Add(new Vertex(this, i));
+            }
+        }
+
+        private void GenerateEdgesFromIF(string[] vals, IndexedFace indexedFace)
+        {
+            Vertex firstVertex = GetExistingVertex(Vertices[int.Parse(vals[0])].ModelingCoord);
+            indexedFace.Vertices.Add(firstVertex);
+            firstVertex.IndexedFaces.Add(indexedFace);
+            Vertex previousVertex = firstVertex;
+            for (int vertexIndex = 1; vertexIndex < vals.Length - 1; vertexIndex++) //ignore the last value (seems to always be -1, not a vertex), so end at Length - 2
+            {
+
+                Vertex currentVertex = GetExistingVertex(Vertices[int.Parse(vals[vertexIndex])].ModelingCoord);
+                if (!indexedFace.Vertices.Contains(currentVertex)) //sometimes triangles are represented as squares, using a duplicate Vertex. We want them to actually be triangles.
+                {
+                    Edge e = GetNewOrExistingEdge(previousVertex, currentVertex, indexedFace);
+                    if (e.CreatorFace != indexedFace && e.OtherFace == null) //if this edge was an existing edge, we need to update it so it knows that it's now a part of a new IndexedFace
+                        e.AddFace(indexedFace);
+
+                    indexedFace.Edges.Add(e);
+
+                    //make sure the Vertices know that they are now part of the new edge, if they don't already know.
+                    if (!previousVertex.Edges.Contains(e))
+                        previousVertex.Edges.Add(e);
+                    if (!currentVertex.Edges.Contains(e))
+                        currentVertex.Edges.Add(e);
+
+                    indexedFace.Vertices.Add(currentVertex);
+                    currentVertex.IndexedFaces.Add(indexedFace);
+                    previousVertex = currentVertex;
+                }
+            }
+            //add the Edge that finishes this IndexedFace
+            Edge finalEdge = GetNewOrExistingEdge(previousVertex, firstVertex, indexedFace);
+            if (finalEdge.CreatorFace != indexedFace) //if this edge was an existing edge, we need to update it so it knows that it's now a part of a new IndexedFace
+                finalEdge.AddFace(indexedFace);
+
+            indexedFace.Edges.Add(finalEdge);
+
+            //update the first and last Vertex to so that they know about the Edge that was just added
+            if (!indexedFace.Vertices[0].Edges.Contains(finalEdge))
+                indexedFace.Vertices[0].Edges.Add(finalEdge);
+            if (!indexedFace.Vertices[indexedFace.Vertices.Count - 1].Edges.Contains(finalEdge))
+                indexedFace.Vertices[indexedFace.Vertices.Count - 1].Edges.Add(finalEdge);
         }
 
         static int edgeID = 0;
